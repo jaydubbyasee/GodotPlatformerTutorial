@@ -11,3 +11,4 @@ format = 2
 layer_0/tile_data = PackedInt32Array(65535, 131072, 1, 65534, 131072, 1, 0, 131072, 1, 1, 131072, 1, 65533, 65536, 1, 2, 196608, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)

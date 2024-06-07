@@ -11,9 +11,19 @@ config_version=5
 [application]
 
 config/name="GodotPlatformerTutorial"
+run/main_scene="res://levels/level_01.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
 project/assembly_name="GodotPlatformerTutorial"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
