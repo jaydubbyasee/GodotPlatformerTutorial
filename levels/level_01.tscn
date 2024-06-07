@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwv0t55qvv68l"]
+
+[ext_resource type="TileSet" uid="uid://ch16h8cqjwgh2" path="res://tilemap/kenny_tileset.tres" id="1_y8tvl"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+tile_set = ExtResource("1_y8tvl")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 131072, 1, 65534, 131072, 1, 0, 131072, 1, 1, 131072, 1, 65533, 65536, 1, 2, 196608, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
