@@ -1,14 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwv0t55qvv68l"]
+[gd_scene load_steps=3 format=3 uid="uid://bwv0t55qvv68l"]
 
-[ext_resource type="TileSet" uid="uid://ch16h8cqjwgh2" path="res://tilemap/kenny_tileset.tres" id="1_y8tvl"]
+[ext_resource type="TileSet" uid="uid://cnvx1nhym2lxf" path="res://tilemap/kenny_tileset.tres" id="1_y8tvl"]
+[ext_resource type="PackedScene" uid="uid://b1x5ejh6s3xwm" path="res://characters/player_character.tscn" id="3_wesng"]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="TileMap" type="TileMap" parent="."]
-texture_filter = 1
-tile_set = ExtResource("1_y8tvl")
-format = 2
-layer_0/tile_data = PackedInt32Array(65535, 131072, 1, 65534, 131072, 1, 0, 131072, 1, 1, 131072, 1, 65533, 65536, 1, 2, 196608, 1)
+[node name="Level01" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(2, 2)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_y8tvl")
+rendering_quadrant_size = 18
+format = 2
+layer_0/tile_data = PackedInt32Array(65533, 65536, 0, 65534, 131072, 0, 65535, 131072, 0, 0, 131072, 0, 1, 131072, 0, 2, 196608, 0, 262135, 65536, 0, 262136, 131072, 0, 262137, 131072, 0, 262138, 131072, 0, 262139, 196608, 0, 327681, 65536, 0, 327682, 131072, 0, 327683, 131072, 0, 327684, 131072, 0, 327685, 131072, 0, 327686, 196608, 0)
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("3_wesng")]
+position = Vector2(0, -14)
