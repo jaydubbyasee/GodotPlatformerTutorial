@@ -1,18 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwv0t55qvv68l"]
+[gd_scene load_steps=8 format=3 uid="uid://bwv0t55qvv68l"]
 
+[ext_resource type="Script" path="res://levels/level_01.gd" id="1_dlo2n"]
 [ext_resource type="TileSet" uid="uid://cnvx1nhym2lxf" path="res://tilemap/kenny_tileset.tres" id="1_y8tvl"]
 [ext_resource type="PackedScene" uid="uid://b1x5ejh6s3xwm" path="res://characters/player_character.tscn" id="3_wesng"]
+[ext_resource type="Texture2D" uid="uid://bxbey5ycaymd7" path="res://tilemap/tilemap-backgrounds_packed.png" id="4_67m5w"]
+[ext_resource type="PackedScene" uid="uid://b6rokwbo8cype" path="res://interactables/flag.tscn" id="5_achbo"]
+[ext_resource type="PackedScene" uid="uid://ksx3uglasy2e" path="res://interactables/coin.tscn" id="6_5nwki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlvgu"]
+atlas = ExtResource("4_67m5w")
+region = Rect2(0, 0, 96, 72)
 
 [node name="Level01" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+script = ExtResource("1_dlo2n")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_y8tvl")
 rendering_quadrant_size = 18
 format = 2
-layer_0/tile_data = PackedInt32Array(65533, 65536, 0, 65534, 131072, 0, 65535, 131072, 0, 0, 131072, 0, 1, 131072, 0, 2, 196608, 0, 262135, 65536, 0, 262136, 131072, 0, 262137, 131072, 0, 262138, 131072, 0, 262139, 196608, 0, 327681, 65536, 0, 327682, 131072, 0, 327683, 131072, 0, 327684, 131072, 0, 327685, 131072, 0, 327686, 196608, 0)
+layer_0/tile_data = PackedInt32Array(262135, 65536, 0, 262136, 131072, 0, 262137, 131072, 0, 262138, 131072, 0, 262139, 196608, 0, 1, 131072, 0, 0, 131072, 0, 2, 196608, 0, 65535, 131072, 0, 65534, 131072, 0, 65533, 65536, 0, 327681, 65536, 0, 327682, 131072, 0, 327683, 131072, 0, 327684, 131072, 0, 327685, 131072, 0, 327686, 196608, 0, 327692, 65536, 0, 327693, 65536, 0, 327694, 65536, 0, 327695, 65536, 0, 327696, 65536, 0, 327697, 65536, 0, 327698, 65536, 0, 393241, 65536, 0, 393240, 65536, 0, 393239, 65536, 0, 393238, 65536, 0, 393237, 65536, 0, 393236, 65536, 0, 393235, 65536, 0, 393234, 65536, 0, 393242, 65536, 0, 393243, 65536, 0, 393244, 65536, 0, 393245, 65536, 0)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_wesng")]
-position = Vector2(0, -14)
+position = Vector2(-2, -12)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
+position = Vector2(0, 64)
+offset = Vector2(0, -90)
+zoom = Vector2(2, 2)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_scale = 0.1
+scroll_offset = Vector2(-120.615, 0)
+scroll_base_offset = Vector2(-736.19, 0)
+scroll_limit_begin = Vector2(27.095, 0)
+scroll_limit_end = Vector2(23.1, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.01, 0.1)
+motion_offset = Vector2(0, 200)
+motion_mirroring = Vector2(589.65, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(0, -68)
+scale = Vector2(6.211, 5)
+texture = SubResource("AtlasTexture_nlvgu")
+
+[node name="Flagpole" parent="." node_paths=PackedStringArray("character") instance=ExtResource("5_achbo")]
+position = Vector2(457, 5)
+character = NodePath("../PlayerCharacter")
+
+[node name="Coin" parent="." instance=ExtResource("6_5nwki")]
+position = Vector2(243, 81)
+
+[node name="Coin2" parent="." instance=ExtResource("6_5nwki")]
+position = Vector2(280, 81)
+
+[connection signal="goal_reached" from="Flagpole" to="." method="_on_flagpole_goal_reached"]
