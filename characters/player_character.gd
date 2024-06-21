@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 # Modify this to adjust how quickly your character moves, this has also been exported to the editor
 # so you can modify it on your scene instance as well
-@export var speed = 300.0
-@export var jump_velocity = -400.0
+@export var speed: float = 300.0
+@export var jump_velocity: float = -400.0
+@export var max_jumps: int = 2
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var jump_counter: int = 0
 
 signal player_died
 
@@ -14,9 +16,13 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	else:
+		jump_counter = 0
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and jump_counter < max_jumps:
+		# Reset jump counter
+		jump_counter += 1
 		velocity.y = jump_velocity
 		$AnimatedSprite2D.play("jump")
 
