@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwv0t55qvv68l"]
+[gd_scene load_steps=9 format=3 uid="uid://bwv0t55qvv68l"]
 
 [ext_resource type="Script" path="res://levels/level_01.gd" id="1_dlo2n"]
 [ext_resource type="TileSet" uid="uid://cnvx1nhym2lxf" path="res://tilemap/kenny_tileset.tres" id="1_y8tvl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bxbey5ycaymd7" path="res://tilemap/tilemap-backgrounds_packed.png" id="4_67m5w"]
 [ext_resource type="PackedScene" uid="uid://b6rokwbo8cype" path="res://interactables/flag.tscn" id="5_achbo"]
 [ext_resource type="PackedScene" uid="uid://ksx3uglasy2e" path="res://interactables/coin.tscn" id="6_5nwki"]
+[ext_resource type="PackedScene" uid="uid://pckp53ba5x2b" path="res://ui/coin_counter.tscn" id="7_2ky86"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nlvgu"]
 atlas = ExtResource("4_67m5w")
@@ -55,5 +56,10 @@ position = Vector2(243, 81)
 
 [node name="Coin2" parent="." instance=ExtResource("6_5nwki")]
 position = Vector2(280, 81)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CoinCounter" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("7_2ky86")]
+player = NodePath("../../PlayerCharacter")
 
 [connection signal="goal_reached" from="Flagpole" to="." method="_on_flagpole_goal_reached"]
