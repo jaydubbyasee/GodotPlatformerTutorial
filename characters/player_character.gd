@@ -1,3 +1,5 @@
+class_name PlayerCharacter
+
 extends CharacterBody2D
 
 # Modify this to adjust how quickly your character moves, this has also been exported to the editor
@@ -10,7 +12,12 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump_counter: int = 0
 
+var coins_collected: int = 0
+
 signal player_died
+
+signal coins_update
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -34,12 +41,17 @@ func _physics_process(delta):
 		$AnimatedSprite2D.flip_h = direction > 0
 		velocity.x = direction * speed
 		$AnimatedSprite2D.play("walk")
-		
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		$AnimatedSprite2D.play("default")
 
 	move_and_slide()
-	
+
+
 func on_hit():
 	player_died.emit()
+
+
+func add_coins(value: int = 1):
+	coins_collected += value
+	coins_update.emit(coins_collected)

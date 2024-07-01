@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ksx3uglasy2e"]
+[gd_scene load_steps=7 format=3 uid="uid://ksx3uglasy2e"]
 
 [ext_resource type="Texture2D" uid="uid://dw5fi4inq71mn" path="res://tilemap/tilemap_packed.png" id="1_f2ktf"]
+[ext_resource type="Script" path="res://interactables/coin.gd" id="1_q0q30"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_spxwx"]
 atlas = ExtResource("1_f2ktf")
@@ -24,8 +25,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Coin" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1lvvp"]
+radius = 7.28011
+
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_q0q30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_637tf")
 autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1lvvp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
