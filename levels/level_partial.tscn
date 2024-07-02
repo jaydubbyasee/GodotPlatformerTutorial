@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://btx26wsm2a5qc"]
+
+[ext_resource type="Script" path="res://levels/level_01.gd" id="1_odtpi"]
+[ext_resource type="TileSet" uid="uid://cnvx1nhym2lxf" path="res://tilemap/kenny_tileset.tres" id="2_28qku"]
+[ext_resource type="Texture2D" uid="uid://bxbey5ycaymd7" path="res://tilemap/tilemap-backgrounds_packed.png" id="4_ljdtw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlvgu"]
+atlas = ExtResource("4_ljdtw")
+region = Rect2(0, 0, 96, 72)
+
+[node name="LevelStartingPoint" type="Node2D"]
+script = ExtResource("1_odtpi")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_28qku")
+rendering_quadrant_size = 18
+format = 2
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(380, 280)
+transform = Transform2D(1, 0, 0, 1, 380, 280)
+follow_viewport_scale = 0.1
+scroll_offset = Vector2(2.08165e-12, 2.08165e-12)
+scroll_limit_begin = Vector2(-10000, 2.08165e-12)
+scroll_limit_end = Vector2(10000, 2.08165e-12)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_offset = Vector2(2.08165e-12, 2.08165e-12)
+motion_mirroring = Vector2(768, 2.08165e-12)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(8, 8)
+texture = SubResource("AtlasTexture_nlvgu")
