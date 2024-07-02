@@ -62,5 +62,3 @@ shape = SubResource("CapsuleShape2D_fjscv")
 sprite_frames = SubResource("SpriteFrames_tpinm")
 animation = &"walk"
 frame_progress = 0.107002
-
-[node name="DashTimer" type="Timer" parent="."]
