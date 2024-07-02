@@ -94,3 +94,4 @@ attenuation = 1e-05
 
 [connection signal="goal_reached" from="Flagpole" to="." method="_on_flagpole_goal_reached"]
 [connection signal="body_entered" from="WorldBounds" to="." method="_on_fall_out_of_bounds"]
+[connection signal="body_entered" from="WorldBounds" to="PlayerCharacter" method="_on_fall_out_of_bounds"]

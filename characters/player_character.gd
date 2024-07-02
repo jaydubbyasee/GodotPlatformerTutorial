@@ -53,4 +53,8 @@ func add_coins(value: int = 1):
 
 
 func _on_fall_out_of_bounds(body):
+	set_physics_process(false)
+	$CPUParticles2D.emitting = true
+	$CPUParticles2D.restart()
+	$AnimatedSprite2D.hide()
 	player_died.emit()

@@ -62,3 +62,18 @@ shape = SubResource("CapsuleShape2D_fjscv")
 sprite_frames = SubResource("SpriteFrames_tpinm")
 animation = &"walk"
 frame_progress = 0.107002
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+speed_scale = 0.64
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 50.0
+direction = Vector2(2.08165e-12, -1)
+spread = 60.25
+initial_velocity_max = 389.83
+angular_velocity_max = 16.27
+scale_amount_min = 0.0
+scale_amount_max = 6.65
+color = Color(0.639216, 0, 0, 1)
