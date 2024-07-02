@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6rokwbo8cype"]
+[gd_scene load_steps=9 format=3 uid="uid://b6rokwbo8cype"]
 
 [ext_resource type="Texture2D" uid="uid://dw5fi4inq71mn" path="res://tilemap/tilemap_packed.png" id="1_bg6x2"]
 [ext_resource type="Script" path="res://interactables/flag.gd" id="1_ccbvd"]
+[ext_resource type="AudioStream" uid="uid://bsti2x2swcc1p" path="res://sfx/2.wav" id="4_wc1vk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hal4w"]
 atlas = ExtResource("1_bg6x2")
@@ -50,5 +51,8 @@ frame_progress = 0.485587
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 38)
 shape = SubResource("RectangleShape2D_xxmjx")
+
+[node name="VictoryAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wc1vk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

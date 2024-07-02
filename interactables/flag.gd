@@ -16,4 +16,6 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body == character:
+		$VictoryAudioStreamPlayer2D.play()
 		goal_reached.emit()
+		

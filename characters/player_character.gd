@@ -18,7 +18,6 @@ signal player_died
 
 signal coins_update
 
-
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -48,10 +47,10 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func on_hit():
-	player_died.emit()
-
-
 func add_coins(value: int = 1):
 	coins_collected += value
 	coins_update.emit(coins_collected)
+
+
+func _on_fall_out_of_bounds(body):
+	player_died.emit()

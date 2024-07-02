@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwv0t55qvv68l"]
+[gd_scene load_steps=13 format=3 uid="uid://bwv0t55qvv68l"]
 
 [ext_resource type="Script" path="res://levels/level_01.gd" id="1_dlo2n"]
 [ext_resource type="TileSet" uid="uid://cnvx1nhym2lxf" path="res://tilemap/kenny_tileset.tres" id="1_y8tvl"]
@@ -7,10 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://b6rokwbo8cype" path="res://interactables/flag.tscn" id="5_achbo"]
 [ext_resource type="PackedScene" uid="uid://ksx3uglasy2e" path="res://interactables/coin.tscn" id="6_5nwki"]
 [ext_resource type="PackedScene" uid="uid://pckp53ba5x2b" path="res://ui/coin_counter.tscn" id="7_2ky86"]
+[ext_resource type="AudioStream" uid="uid://cbx6dm26fdu37" path="res://music/Juhani Junkala [Chiptune Adventures] 1. Stage 1.ogg" id="8_4tkhk"]
+[ext_resource type="PackedScene" uid="uid://bp2jpmlk2kgkx" path="res://ui/win_message.tscn" id="8_grx12"]
+[ext_resource type="PackedScene" uid="uid://bwdhs40ys0xs8" path="res://ui/died_message.tscn" id="9_18fcv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nlvgu"]
 atlas = ExtResource("4_67m5w")
 region = Rect2(0, 0, 96, 72)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pa53l"]
 
 [node name="Level01" type="Node2D"]
 script = ExtResource("1_dlo2n")
@@ -19,7 +24,7 @@ script = ExtResource("1_dlo2n")
 tile_set = ExtResource("1_y8tvl")
 rendering_quadrant_size = 18
 format = 2
-layer_0/tile_data = PackedInt32Array(262135, 65536, 0, 262136, 131072, 0, 262137, 131072, 0, 262138, 131072, 0, 262139, 196608, 0, 1, 131072, 0, 0, 131072, 0, 2, 196608, 0, 65535, 131072, 0, 65534, 131072, 0, 65533, 65536, 0, 327681, 65536, 0, 327682, 131072, 0, 327683, 131072, 0, 327684, 131072, 0, 327685, 131072, 0, 327686, 196608, 0, 327692, 65536, 0, 327693, 65536, 0, 327694, 65536, 0, 327695, 65536, 0, 327696, 65536, 0, 327697, 65536, 0, 327698, 65536, 0, 393241, 65536, 0, 393240, 65536, 0, 393239, 65536, 0, 393238, 65536, 0, 393237, 65536, 0, 393236, 65536, 0, 393235, 65536, 0, 393234, 65536, 0, 393242, 65536, 0, 393243, 65536, 0, 393244, 65536, 0, 393245, 65536, 0, 393248, 0, 0, 393249, 0, 0, 393250, 0, 0, 393251, 0, 0, 393252, 0, 0, 393253, 0, 0, 393254, 0, 0, 393255, 0, 0, 393256, 0, 0, 393257, 0, 0, 393258, 0, 0, 393259, 0, 0, 393260, 0, 0, 393261, 0, 0, 393262, 0, 0, 393263, 0, 0, 393264, 0, 0, 393265, 0, 0, 393266, 0, 0, 393267, 0, 0, 393268, 0, 0, 393269, 0, 0, 393270, 0, 0, 393271, 0, 0, 393272, 0, 0, 393273, 0, 0, 393274, 0, 0, 393275, 0, 0, 393276, 0, 0, 393277, 0, 0, 393278, 0, 0, 393279, 0, 0, 393280, 0, 0, 393281, 0, 0, 393282, 0, 0, 393283, 0, 0, 393284, 0, 0, 393285, 0, 0)
+layer_0/tile_data = PackedInt32Array(1, 131072, 0, 0, 131072, 0, 2, 131072, 0, 65535, 131072, 0, 65534, 131072, 0, 393241, 131072, 0, 393240, 131072, 0, 393239, 65536, 0, 393242, 196608, 0, 3, 196608, 0, 65532, 65536, 0, 65533, 131072, 0, 327686, 65536, 0, 327687, 131072, 0, 327688, 196608, 0, 327693, 65536, 0, 327694, 131072, 0, 327695, 196608, 0)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_wesng")]
 position = Vector2(-2, -12)
@@ -51,10 +56,16 @@ texture = SubResource("AtlasTexture_nlvgu")
 position = Vector2(457, 5)
 character = NodePath("../PlayerCharacter")
 
-[node name="Coin" parent="." instance=ExtResource("6_5nwki")]
+[node name="Coin" parent="." groups=["Coins"] instance=ExtResource("6_5nwki")]
+position = Vector2(116, 81)
+
+[node name="Coin2" parent="." groups=["Coins"] instance=ExtResource("6_5nwki")]
+position = Vector2(153, 81)
+
+[node name="Coin3" parent="." groups=["Coins"] instance=ExtResource("6_5nwki")]
 position = Vector2(243, 81)
 
-[node name="Coin2" parent="." instance=ExtResource("6_5nwki")]
+[node name="Coin4" parent="." groups=["Coins"] instance=ExtResource("6_5nwki")]
 position = Vector2(280, 81)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -62,4 +73,24 @@ position = Vector2(280, 81)
 [node name="CoinCounter" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("7_2ky86")]
 player = NodePath("../../PlayerCharacter")
 
+[node name="WinMessage" parent="CanvasLayer" instance=ExtResource("8_grx12")]
+visible = false
+
+[node name="DiedMessage" parent="CanvasLayer" instance=ExtResource("9_18fcv")]
+visible = false
+
+[node name="WorldBounds" type="Area2D" parent="."]
+position = Vector2(0, -74)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
+position = Vector2(0, 289)
+shape = SubResource("WorldBoundaryShape2D_pa53l")
+
+[node name="LevelMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_4tkhk")
+volume_db = -7.61
+autoplay = true
+attenuation = 1e-05
+
 [connection signal="goal_reached" from="Flagpole" to="." method="_on_flagpole_goal_reached"]
+[connection signal="body_entered" from="WorldBounds" to="." method="_on_fall_out_of_bounds"]
